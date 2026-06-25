@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Театральный проект</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at top, #1b0f1f, #050208 70%);
+    color: #f4e8c1;
+    font-family: 'Playfair Display', serif;
+}
+
+/* ===== СЦЕНЫ ===== */
+.scene {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+}
+
+.active {
+    display: flex;
+}
+
+/* ===== ТЕАТР ===== */
+.title-big {
+    font-family: 'Cinzel', serif;
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.label {
+    font-family: 'Cinzel', serif;
+    color: gold;
+}
+
+/* ===== INPUT ===== */
+input {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    width: 260px;
+}
+
+/* ===== ERROR ===== */
+.error {
+    color: red;
+    margin-top: 10px;
+    display: none;
+}
+
+/* ===== BUTTON ===== */
+button {
+    margin-top: 20px;
+    padding: 14px 30px;
+    background: darkred;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* ===== ACT 3 ===== */
+.radio {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 30px;
+}
+
+.act-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'Cinzel', serif;
+}
+
+/* ===== ACT 3 STATUS ===== */
+.status {
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.show {
+    opacity: 1;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===================== 1 СЦЕНА ===================== -->
+<div class="scene active" id="s1">
+
+<div>
+    <div style="font-size:26px;">🎭 Для продолжения введите код</div>
+
+    <input id="codeInput" placeholder="введите код">
+
+    <div class="error" id="err">
+        код введен неверно, повторите попытку
+    </div>
+</div>
+
+</div>
+
+<!-- ===================== 2 СЦЕНА ===================== -->
+<div class="scene" id="s2">
+
+<div>
+
+<div class="title-big">
+    Малый Петербургский театр воспоминаний
+</div>
+
+<div style="text-align:left; margin-top:40px;">
+
+<p><span class="label">СПЕКТАКЛЬ:</span> Полгода</p>
+<p><span class="label">АКТЕРЫ:</span> ???</p>
+<p><span class="label">ЗРИТЕЛИ:</span> ???</p>
+<p><span class="label">ДЕКОРАЦИИ:</span> Санкт-Петербург</p>
+<p><span class="label">РЕЖИССЕР:</span> ???</p>
+
+</div>
+
+<button onclick="goS3()">
+НАЧАТЬ ПРЕДСТАВЛЕНИЕ
+</button>
+
+</div>
+
+</div>
+
+<!-- ===================== 3 СЦЕНА ===================== -->
+<div class="scene" id="s3">
+
+<div>
+
+<div class="act-title">
+    АКТ I. "Знакомство"
+</div>
+
+<p>Для продолжения загрузите фотографию █████████████████████████████</p>
+<p style="opacity:0.7;">Подсказка: Шиллинг</p>
+
+<input type="file" id="file">
+
+<div class="status" id="st1">связь установлена</div>
+<div class="status" id="st2">первый акт завершен</div>
+
+<button id="btn3" style="display:none;" onclick="goS4()">
+перейти к следующему акту
+</button>
+
+<div class="radio">📻</div>
+
+</div>
+
+</div>
+
+<!-- ===================== 4 СЦЕНА ===================== -->
+<div class="scene" id="s4">
+
+<div>
+
+<div class="act-title">
+АКТ II "Кастинг"
+</div>
+
+<div style="font-size:22px; margin-top:40px;">
+59.959740, 30.287104
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const correctCode = "l0ve_¥Ou_£loWW€r";
+
+/* ===== 1 СЦЕНА ===== */
+document.getElementById("codeInput").addEventListener("keypress", e => {
+    if (e.key === "Enter") {
+        if (document.getElementById("codeInput").value === correctCode) {
+            document.getElementById("s1").classList.remove("active");
+            document.getElementById("s2").classList.add("active");
+        } else {
+            document.getElementById("err").style.display = "block";
+        }
+    }
+});
+
+/* ===== 2 → 3 ===== */
+function goS3() {
+    document.getElementById("s2").classList.remove("active");
+    document.getElementById("s3").classList.add("active");
+}
+
+/* ===== 3 логика ===== */
+document.getElementById("file").addEventListener("change", () => {
+
+    setTimeout(() => {
+        document.getElementById("st1").classList.add("show");
+    }, 1000);
+
+    setTimeout(() => {
+        document.getElementById("st2").classList.add("show");
+    }, 2000);
+
+    setTimeout(() => {
+        document.getElementById("btn3").style.display = "block";
+    }, 2800);
+
+});
+
+/* ===== 3 → 4 ===== */
+function goS4() {
+    document.getElementById("s3").classList.remove("active");
+    document.getElementById("s4").classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
