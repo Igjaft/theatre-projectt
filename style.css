@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    /* 🎭 более театральный фон */
+    background:
+        radial-gradient(circle at top, rgba(120, 0, 40, 0.35), transparent 60%),
+        radial-gradient(circle at bottom, rgba(10, 0, 20, 0.9), #050208 70%),
+        url("https://images.unsplash.com/photo-1520697830682-bbb6e85e2b0d");
+    background-size: cover;
+    background-position: center;
+
+    color: #f4e8c1;
+    font-family: 'Playfair Display', serif;
+}
+
+/* ===== сцены ===== */
+.scene {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.active {
+    display: flex;
+}
+
+/* ===== 1 СЦЕНА ===== */
+.stage {
+    position: relative;
+    z-index: 2;
+}
+
+.title {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 180, 220, 0.2);
+}
+
+.code-input {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    outline: none;
+    font-size: 16px;
+    text-align: center;
+
+    background: rgba(0,0,0,0.35);
+    color: #f4e8c1;
+
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(255, 120, 180, 0.1);
+}
+
+.code-input:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(255, 120, 180, 0.25);
+}
+
+.error {
+    margin-top: 10px;
+    color: #ff5a5a;
+    font-size: 14px;
+    display: none;
+}
+
+.next-screen {
+    display: none;
+    font-size: 18px;
+    margin-top: 15px;
+    color: #ffb6d9;
+}
+
+/* ===== СТИКЕРЫ ===== */
+.stickers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sticker {
+    position: absolute;
+    font-size: 24px;
+    animation: float 4s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ===== 2 СЦЕНА ===== */
+.box {
+    background: rgba(0,0,0,0.45);
+    padding: 30px 35px;
+    border-radius: 18px;
+
+    border: 1px solid rgba(255, 180, 220, 0.15);
+    backdrop-filter: blur(12px);
+
+    box-shadow: 0 0 40px rgba(0,0,0,0.4);
+}
+
+.box h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.box p {
+    margin: 6px 0;
+    opacity: 0.9;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #7b1e3a, #3a0d1c);
+    color: #f4e8c1;
+
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 120, 180, 0.2);
+}
+
+/* ===== 3 СЦЕНА ===== */
+.radio {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 30px;
+    animation: float 3s infinite ease-in-out;
+}
+
+h2 {
+    font-family: 'Cinzel', serif;
+}
